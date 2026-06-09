@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="byte2cloud.png" alt="Byte2Cloud Logo" width="180"/>
+  <img src="logos/Byte2Cloud.png" alt="Byte2Cloud Logo" width="180"/>
 </p>
 
 <h1 align="center">Byte2Cloud — Workshop Dashboard</h1>
@@ -7,6 +7,10 @@
 <p align="center">
   A real-time submission monitoring dashboard for the <strong>Byte2Cloud Linux Workshop</strong>.<br/>
   Instructors can watch live as teams upload their answers over SSH/SCP.
+</p>
+
+<p align="center">
+  <img src="images/UI.png" alt="Dashboard UI" width="800"/>
 </p>
 
 ---
@@ -28,9 +32,11 @@ This repository contains everything needed to run the Byte2Cloud Linux workshop 
 ```
 byte2cloud-scoreboard/
 │
-├── byte2cloud.png                ← Project logo
 ├── setup_byte2cloud.sh           ← Main workshop setup script (run first)
 ├── fix_ssh.sh                    ← Enables SSH password login for teams
+│
+├── images/                       ← Screenshots
+│   └── UI.png                    ← Dashboard UI screenshot
 │
 ├── python-server/                ← Standalone Python dashboard (no nginx needed)
 │   ├── server.py                 ← Python HTTP server (serves UI + API)
