@@ -41,7 +41,8 @@ RECENT_THRESHOLD = 300   # 5 minutes
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-SCRIPT_DIR = Path(__file__).parent
+SCRIPT_DIR  = Path(__file__).parent          # .../python-server/
+REPO_ROOT   = SCRIPT_DIR.parent              # .../submission dashboard/
 
 
 def fmt_bytes(n: int) -> str:
@@ -184,7 +185,15 @@ class Handler(http.server.BaseHTTPRequestHandler):
         if path == "/" or path == "/index.html":
             file_path = SCRIPT_DIR / "index.html"
         else:
-            file_path = SCRIPT_DIR / path.lstrip("/")
+            # First look in python-server/ dir, then fall back to repo root
+            local_path = SCRIPT_DIR / path.lstrip("/")
+            repo_path  = REPO_ROOT  / path.lstrip("/")
+            if local_path.is_file():
+                file_path = local_path
+            elif repo_path.is_file():
+                file_path = repo_path
+            else:
+                file_path = local_path  # will trigger 404 below
 
         if file_path.is_file():
             self.send_file(file_path)
